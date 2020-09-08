@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiMoon, FiSun, FiRefreshCcw } from 'react-icons/fi';
-import { RiArrowGoBackLine, RiChat4Line, RiChatOffLine } from 'react-icons/ri';
+import { RiChat4Line, RiChatOffLine } from 'react-icons/ri';
 import { useState, useEffect, useRef } from 'react';
 
 import 'bootstrap/dist/js/bootstrap';
@@ -30,7 +30,6 @@ function App() {
     'theme'  : 'dark',
     'prompt' : false,
   });
-  const [menu, setMenu] = useState(false);
   const userInputRef = useRef(null);
 
   const useMountEffect = (f) => useEffect(f, []);
@@ -56,6 +55,7 @@ function App() {
     tt.wc    = 0;
 
     tt.stat[0] = 1;
+    userInputRef.current.focus()
     setTipTap(tt);
   }
 
@@ -127,12 +127,14 @@ function App() {
 
   let inputStyle = {
     background: 'transparent',
+    border: '0px',
     zIndex: '2',
     padding: '0px',
     caretColor: themes[conf['theme']]['colors'][1],
     color: themes[conf['theme']]['colors'][1],
-    fontSize: '2.5em',
-    height: '1.5em'
+    fontSize: '2.0em',
+    height: '1.5em',
+    maxWidth: '95%'
   }
 
   console.log(tiptap);
@@ -140,22 +142,33 @@ function App() {
     <div className="min-vh-100 d-flex flex-column justify-content-center align-items-center" style={{ backgroundColor: themes[conf['theme']]['bg'] }}>
       <div className="container">
         <div style={{ color: themes[conf['theme']]['colors'][4] }}>
-          <div className="d-flex justify-content-between" style={{ marginBottom: '2em' }}>
+          <div className="d-flex flex-wrap justify-content-between" style={{ marginBottom: '20px', marginTop: '20px' }}>
             <div>
               <h1>Tip<span style={{ color: themes[conf['theme']]['colors'][1] }}>Tap</span></h1>
             </div>
             <div>
-              <button onClick={ (e) => setConf({...conf, prompt: ~conf['prompt']}) } className="px-2 h-100 btn" style={{ color: themes[conf['theme']]['colors'][4], backgroundColor: 'transparent' }}>
+              <button
+                onClick={(e) => newGame(tiptap.len)}
+                className="px-2 h-100 btn"
+                style={{ color: themes[conf['theme']]['colors'][1], backgroundColor: 'transparent' }}>
+                <FiRefreshCcw size={32} />
+              </button>
+              <button
+                onClick={ (e) => setConf({...conf, prompt: ~conf['prompt']}) }
+                className="px-2 h-100 btn"
+                style={{ color: themes[conf['theme']]['colors'][4], backgroundColor: 'transparent' }}>
                 { conf['prompt'] ? <RiChat4Line size={32} /> : <RiChatOffLine size={32} /> }
               </button>
-              <button onClick={ (e) => nextTheme() } className="px-2 h-100 btn" style={{ color: themes[conf['theme']]['colors'][4], backgroundColor: 'transparent' }}>
+              <button onClick={ (e) => nextTheme() }
+                className="px-2 h-100 btn"
+                style={{ color: themes[conf['theme']]['colors'][4], backgroundColor: 'transparent' }}>
                 { conf['theme'] === 'dark' ? <FiMoon size={32} /> : <FiSun size={32} /> }
               </button>
             </div>
           </div>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex flex-wrap justify-content-between">
             <div>
-              <ul className="list-inline">
+              <ul className="list-inline px-2">
                 <li className="list-inline-item"><span style={{ fontSize: '1.5em' }}>WPM: { tiptap.wpm }</span></li>
                 <li className="list-inline-item"><span style={{ fontSize: '1.5em' }}>ACC: { tiptap.acc }</span></li>
               </ul>
@@ -184,28 +197,25 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="d-flex flex-wrap" style={{ marginBottom: '1em' }}>
+        <div className="d-flex flex-wrap" style={{ marginBottom: '20px' }}>
         {
           tiptap.words.map((w, i) =>
             colWord(w, i)
           )
         }
+
         </div>
-        <div className="w-100 d-flex d-row" style={{ borderBottom: '2px solid ' + themes[conf['theme']]['colors'][4] }}>
-          { conf['prompt'] ? <div className="d-flex" style={{ position: 'absolute', zIndex: '1', color: themes[conf['theme']]['colors'][0], fontSize: '2.5em', height: '1.5em' }}>
+        <div className="d-flex flex-wrap" style={{ borderBottom: '2px solid ' + themes[conf['theme']]['colors'][4], marginBottom: '20px' }}>
+          { conf['prompt'] ? <div className="d-flex" style={{ position: 'absolute', zIndex: '1', color: themes[conf['theme']]['colors'][0], fontSize: '2.0em', height: '1.5em' }}>
             {tiptap.words.slice(tiptap.ptr, tiptap.ptr+2).map((w, i) => ` ${w}`)}
-          </div> : <div />}
-          <div className="w-100 d-flex flex-row">
-            <input
-              className="flex-grow-1"
-              onKeyDown={ (e) => handleKeyDown(e) }
-              onKeyUp={ (e) => handleKeyUp() }
-              ref={ userInputRef }
-              style={ inputStyle }
-              disabled={ tiptap.end ? 'disabled' : '' }
-            />
-            <button onClick={(e) => newGame(tiptap.len)} className="btn" style={{ background: 'transparent', border: '0px', color: themes[conf['theme']]['colors'][1] }}><FiRefreshCcw size={32} /></button>
-          </div>
+          </div> : ''}
+          <input
+            onKeyDown={ (e) => handleKeyDown(e) }
+            onKeyUp={ (e) => handleKeyUp() }
+            ref={ userInputRef }
+            style={ inputStyle }
+            disabled={ tiptap.end ? 'disabled' : '' }
+          />
         </div>
       </div>
     </div>

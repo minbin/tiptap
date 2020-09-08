@@ -1,7 +1,7 @@
 input {
   outline: none !important;
   box-shadow:none !important;
-  border:none !important;
+  border: none;
 }
 
 .btn:focus,.btn:active {
