@@ -1,38 +1,40 @@
-.App {
-  text-align: center;
+input {
+  outline: none !important;
+  box-shadow:none !important;
+  border:none !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+[class*="btn-"] .focus, [class*="btn-"] .active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.border-bottom {
+  border-width: 0.15em !important;
+}
+
+.caret {
+  position: absolute;
+  margin-top: 4px;
+  margin-left: 4px;
+  height: 2em;
+  width: 1.3em;
+  z-index: -1;
+  background: orange;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 1;
   }
 }
