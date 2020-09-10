@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3440ef5f94ada0e0bf1e4b5dcfd3a178",
+    "revision": "e8651b72a0277c8095726e5493f90883",
     "url": "/tiptap/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tiptap/static/css/2.11829350.chunk.css"
   },
   {
-    "revision": "adec11e68dd637b88bc8",
+    "revision": "dc6a57317ad490eb7803",
     "url": "/tiptap/static/css/main.88f6b6fe.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tiptap/static/js/2.f22c32d4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "adec11e68dd637b88bc8",
-    "url": "/tiptap/static/js/main.c0cffbf8.chunk.js"
+    "revision": "dc6a57317ad490eb7803",
+    "url": "/tiptap/static/js/main.3e644894.chunk.js"
   },
   {
     "revision": "82777092cac12465d560",
