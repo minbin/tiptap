@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e8651b72a0277c8095726e5493f90883",
+    "revision": "0f1fafba32175809b25e9e9624854a9c",
     "url": "/tiptap/index.html"
   },
   {
